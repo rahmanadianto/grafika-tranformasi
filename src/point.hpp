@@ -4,6 +4,7 @@
 
 class point {
 public:
+	point();
 	point(int x, int y);
 	int get_x() const;
 	int get_y() const;

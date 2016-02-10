@@ -1,6 +1,11 @@
 #include "point.hpp"
 #include <math.h>
 
+point::point() {
+	this->x = 0;
+	this->y = 0;
+}
+
 point::point(int x, int y) {
 	this->x = x;
 	this->y = y;
@@ -14,7 +19,7 @@ int point::get_y() const {
 	return this->y;
 }
 
-void point::set_x(int x) { 
+void point::set_x(int x) {
 	this->x = x;
 }
 

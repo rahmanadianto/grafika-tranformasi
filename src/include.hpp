@@ -1,5 +1,5 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef INCLUDE_H
+#define INCLUDE_H
 
 #include <algorithm>
 #include <math.h>

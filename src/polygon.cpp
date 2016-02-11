@@ -17,6 +17,10 @@ void polygon::add_point(point p) {
 	this->points.push_back(p0);
 }
 
+void polygon::set_point(int index, point new_value) {
+	points[index] = new_value;
+}
+
 void polygon::draw_stroke(int x, int y, uint32_t color) {
 	int x_origin = points[0].get_x() + x;
 	int y_origin = points[0].get_y() + y;
@@ -38,6 +42,10 @@ void polygon::draw_stroke(int x, int y, uint32_t color) {
 
 std::vector<point> polygon::get_points() {
 	return points;
+}
+
+void polygon::reset() {
+	points.clear();
 }
 
 void polygon::draw_fill(int x, int y, uint32_t color) {

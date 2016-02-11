@@ -12,12 +12,17 @@ public:
 	polygon();
 	void add_point(int x, int y);
 	void add_point(point p);
+	std::vector<point> get_points();
+	
 	void draw_stroke(int x = 0, int y = 0, uint32_t color = 0xffffffff);
 	void draw_fill(int x, int y, uint32_t color = 0xffffffff);
+	
+	// Transformation
 	void scale(float scale);
-	std::vector<point> get_points();
+	void rotate(float rotate);
 private:
-	int scale_factor;
+	float scale_factor;
+	float rotate_factor;
 	std::vector<point> points;
 };
 

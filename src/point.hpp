@@ -4,6 +4,7 @@
 
 class point {
 public:
+	// Constructor
 	point();
 	point(int x, int y);
 	point(const point& p);
@@ -20,8 +21,9 @@ public:
 	static bool cmp_y(const point& p1, const point& p2);
 
 	// Transformasi
-	point scale(float scale);
 	point move(int delta_x = 0, int delta_y = 0);
+	point scale(float scale, int x_origin, int y_origin);
+	point rotate(float angle, int x_origin, int y_origin);
 private:
 	int x;
 	int y;

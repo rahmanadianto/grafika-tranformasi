@@ -14,7 +14,7 @@ public:
 	void add_point(point p);
 	void draw_stroke(int x = 0, int y = 0, uint32_t color = 0xffffffff);
 	void draw_fill(int x, int y, uint32_t color = 0xffffffff);
-	void scale(float scale, int x_origin = 0, int y_origin = 0);
+	void scale(float scale);
 	std::vector<point> get_points();
 private:
 	int scale_factor;

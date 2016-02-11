@@ -3,7 +3,7 @@
 #include <iostream>
 
 polygon::polygon() {
-	this->scale_factor = 0;
+	this->scale_factor = 1;
 }
 
 void polygon::add_point(int x, int y) {
@@ -18,10 +18,13 @@ void polygon::add_point(point p) {
 
 void polygon::draw_stroke(int x, int y, uint32_t color) {
 	for (int i = 0; i < points.size() - 1; i++) {
-		line l(points[i].move(x, y).scale(scale_factor), points[i+1].move(x, y).scale(scale_factor));
+		point p1 = points[i].move(x, y);
+		point p2 = points[i+1].move(x, y);
+		line l(p1, p2);
 		l.draw(color);
 	}
-	line l(points[points.size() - 1].move(x, y).scale(scale_factor), points[0].move(x, y).scale(scale_factor));
+
+	line l(points[points.size() - 1].move(x, y), points[0].move(x, y));
 	l.draw(color);
 }
 
@@ -41,6 +44,6 @@ void polygon::draw_fill(int x, int y, uint32_t color) {
 	}
 }
 
-void polygon::scale(float scale, int x_origin, int y_origin) {
+void polygon::scale(float scale) {
 	this->scale_factor = scale;
 }

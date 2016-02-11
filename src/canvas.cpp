@@ -4,12 +4,12 @@ canvas* canvas::instance;
 
 canvas::canvas() {
 	int fbfd = open("/dev/fb0", O_RDWR);
-	
+
 	ioctl(fbfd, FBIOGET_FSCREENINFO, &(this->finfo));
 	ioctl(fbfd, FBIOGET_VSCREENINFO, &(this->vinfo));
 
 	long int screensize = this->vinfo.xres * this->vinfo.yres * this->vinfo.bits_per_pixel / 8;
-	
+
 	this->fb_ptr = (uint8_t*)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
 	this->canvas_ptr = (uint8_t*)malloc(screensize);
 	memset(canvas_ptr, 0, screensize);
@@ -30,6 +30,10 @@ uint32_t canvas::get_color(int x, int y) {
         return *((uint32_t*)(this->canvas_ptr + location));
 	}
 	return 0x00000000;
+}
+
+fb_var_screeninfo canvas::get_var_info() {
+	return vinfo;
 }
 
 void canvas::render() {

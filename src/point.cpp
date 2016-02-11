@@ -11,6 +11,11 @@ point::point(int x, int y) {
 	this->y = y;
 }
 
+point::point(const point& p) {
+	this->x = p.get_x();
+	this->y = p.get_y();
+}
+
 int point::get_x() const {
 	return this->x;
 }

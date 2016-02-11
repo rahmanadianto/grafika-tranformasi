@@ -10,7 +10,7 @@ public:
 	uint32_t get_color(int x, int y);
 	void render();
 	void clear();
-	fb_var_screeninfo get_screen_info();
+	fb_var_screeninfo get_var_info();
 
 private:
 	canvas();

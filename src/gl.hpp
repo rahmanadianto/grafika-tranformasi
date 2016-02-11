@@ -6,5 +6,6 @@
 #include "line.hpp"
 #include "polygon.hpp"
 #include "point.hpp"
+#include "propeller.hpp"
 
 #endif

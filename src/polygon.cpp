@@ -31,7 +31,7 @@ void polygon::draw_stroke(int x, int y, uint32_t color) {
 
 	point p1 = points[points.size() - 1].move(x, y).scale(scale_factor, x_origin, y_origin).rotate(rotate_factor, x_origin, y_origin);
 	point p2 = points[0].move(x, y).scale(scale_factor, x_origin, y_origin).rotate(rotate_factor, x_origin, y_origin);
-	
+
 	line l(p1, p2);
 	l.draw(color);
 }
@@ -41,7 +41,8 @@ std::vector<point> polygon::get_points() {
 }
 
 void polygon::draw_fill(int x, int y, uint32_t color) {
-	if (((x > 0) && (x < 1000)) || ((y > 0) && (y < 700))) {
+	if (((x > 0) && (x < (int) canvas::get_instance()->get_var_info().xres)) ||
+      ((y > 0) && (y < (int) canvas::get_instance()->get_var_info().yres))) {
 		if (canvas::get_instance()->get_color(x, y) != color) {
 			canvas::get_instance()->draw_pixel(x, y, color);
 			draw_fill(x+1, y, color);

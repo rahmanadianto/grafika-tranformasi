@@ -1,9 +1,22 @@
 #include "circle.hpp"
 
+circle::circle() {
+    this->radius = 1;
+}
+
 circle::circle(point center, int radius) {
   this->center = center;
   this->radius = radius;
 }
+
+int circle::get_radius() {
+  return this->radius;
+}
+
+point circle::get_center() {
+  return this->center;
+}
+
 
 void circle::set_center(point new_center) {
   this->center = new_center;
@@ -39,13 +52,14 @@ void circle::draw_fill(uint32_t color) {
 }
 
 void circle::draw_fill_rec(int x, int y, uint32_t color) {
-  if (((x > 0) && (x < 1000)) || ((y > 0) && (y < 700))) {
+  if (((x > 0) && (x < (int) canvas::get_instance()->get_var_info().xres)) ||
+      ((y > 0) && (y < (int) canvas::get_instance()->get_var_info().yres))) {
 		if (canvas::get_instance()->get_color(x, y) != color) {
 			canvas::get_instance()->draw_pixel(x, y, color);
-			draw_fill_rec(x+1, y, color);
-			draw_fill_rec(x-1, y, color);
-			draw_fill_rec(x, y+1, color);
-			draw_fill_rec(x, y-1, color);
+			draw_fill_rec(x + 1, y, color);
+			draw_fill_rec(x - 1, y, color);
+			draw_fill_rec(x, y + 1, color);
+			draw_fill_rec(x, y - 1, color);
 		}
 	}
 }

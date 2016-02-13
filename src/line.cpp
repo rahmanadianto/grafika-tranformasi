@@ -54,3 +54,31 @@ void line::draw(uint32_t color) {
 		}
 	}
 }
+
+void line::move(int x, int y) {
+	p1.move(x,y);
+	p2.move(x,y);
+}
+
+void line::scale(int scale) {
+	int dx, dy;
+	
+	dx = abs(p1.get_x() - p2.get_x());
+	dy = abs(p1.get_y() - p2.get_y());
+
+	if (p1.get_x() > p2.get_x()) {
+		p1.move(dx, 0);
+		p2.move(-dx, 0);
+	} else {
+		p1.move(-dx, 0);
+		p2.move(dx, 0);
+	}
+
+	if (p1.get_y() > p2.get_y()) {
+		p1.move(0, dy);
+		p2.move(0, -dy);
+	} else {
+		p1.move(0, -dy);
+		p2.move(0, dy);
+	}
+}

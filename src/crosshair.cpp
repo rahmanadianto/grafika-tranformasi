@@ -59,30 +59,39 @@ void crosshair::moveY(int dy) {
 	this->y_pos += dy;
 }
 
-void crosshair::draw_vertical() {
+void crosshair::draw_vertical(uint32_t color = 0xffffffff) {
 	for (int i = 0; i < 4; i++) {
 		lines[i].move(x_pos/2, y_pos/2);
 		lines[i].move(outline_scale - 1, 0);
-		lines[i].draw();
+		lines[i].draw(color);
 		if (outline_scale > 1) {
 			for (int j = 0; j < (outline_scale - 1) * 2; j++) {
 				lines[i].move(-1, 0);
-				lines[i].draw();
+				lines[i].draw(color);
 			}	
 		}
+		lines[i].move(-x_pos/2 + (outline_scale - 1), -y_pos/2 + (outline_scale - 1));
 	}
 }
 
-void crosshair::draw_horizontal() {
+void crosshair::draw_horizontal(uint32_t color = 0xffffffff) {
 	for (int i = 4; i < 8; i++) {
 		lines[i].move(x_pos/2, y_pos/2);
 		lines[i].move(0, outline_scale - 1);
-		lines[i].draw();
+		lines[i].draw(color);
 		if (outline_scale > 1) {
 			for (int j = 0; j < (outline_scale - 1) * 2; j++) {
 				lines[i].move(0, -1);
-				lines[i].draw();
+				lines[i].draw(color);
 			}	
 		}
+		lines[i].move(-x_pos/2 + (outline_scale - 1), -y_pos/2 + (outline_scale - 1));
 	}
+}
+
+int crosshair::getX() {
+	return x_pos;
+}
+int crosshair::getY() {
+	return y_pos;
 }

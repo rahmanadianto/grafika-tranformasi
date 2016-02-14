@@ -14,8 +14,11 @@ public:
 	void reset();
 
 	void draw_stroke(uint32_t color = 0xffffffff);
-	void draw_horizontal();
-	void draw_vertical();
+	void draw_horizontal(uint32_t color = 0xffffffff);
+	void draw_vertical(uint32_t color = 0xffffffff);
+
+	int getX();
+	int getY();
 
 	// Transformation
 	void scale(float scale);
@@ -28,7 +31,7 @@ public:
 	void moveX(int dx);
 	void moveY(int dy);
 
-//private:
+private:
 	int x_pos;
 	int y_pos;
 	float outline_scale;

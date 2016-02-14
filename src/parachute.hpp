@@ -2,6 +2,7 @@
 #define _PARACHUTE_H
 
 #include "gl.hpp"
+#include "polygon.hpp"
 #include <vector>
 #include <iostream>
 
@@ -11,6 +12,8 @@ class parachute {
 		parachute(point center);
 		void set_center(int x, int y);
 		void draw();
+		void move(int delta_x, int delta_y);
+		void rotate(float angle, int x_origin, int y_origin);
 
 	private:
 		int radius;

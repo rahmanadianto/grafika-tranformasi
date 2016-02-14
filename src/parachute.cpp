@@ -43,7 +43,11 @@ void parachute::draw() {
 
 	// Gambar parasut
 	circle c(center, radius);
-	c.draw_stroke_semi_circle(point_parachute[0], point_parachute[1], 0xffffffff);
+	c.draw_stroke_semi_circle(point_parachute[0], point_parachute[3], 0xffffffff);
+	canvas::get_instance()->draw_pixel(point_parachute[0].get_x(), point_parachute[0].get_y(), 0xffff00);
+	canvas::get_instance()->draw_pixel(point_parachute[1].get_x(), point_parachute[1].get_y(), 0xffff00);
+	canvas::get_instance()->draw_pixel(point_parachute[2].get_x(), point_parachute[2].get_y(), 0xffff00);
+	canvas::get_instance()->draw_pixel(point_parachute[3].get_x(), point_parachute[3].get_y(), 0xffff00);
 
 	for (int i=0; i<3; i++) {
 		point p((point_parachute[i].get_x() + point_parachute[i+1].get_x())/2, (point_parachute[i].get_y() + point_parachute[i+1].get_y())/2);
@@ -64,5 +68,19 @@ void parachute::draw() {
 	for (int i=0; i<4; i++) {
 		line l(point_parachute[i], point_parachute[4]);
 		l.draw();
-	}	
+	}
+
+}
+
+void parachute::move(int delta_x, int delta_y) {
+	center = center.move(delta_x, delta_y);
+	for (int i=0; i<7; i++) {
+		point_parachute[i] = point_parachute[i].move(delta_x, delta_y);
+	}
+}
+
+void parachute::rotate(float angle, int x_origin, int y_origin) {
+	for (int i=4; i<7; i++) {
+		point_parachute[i] = point_parachute[i].rotate(angle, x_origin, y_origin);
+	}
 }

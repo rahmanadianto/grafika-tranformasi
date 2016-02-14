@@ -48,6 +48,10 @@ void polygon::reset() {
 	points.clear();
 }
 
+void polygon::resize(int n_points) {
+	points.resize(n_points);
+}
+
 void polygon::draw_fill(int x, int y, uint32_t color) {
 	if (((x > 0) && (x < (int) canvas::get_instance()->get_var_info().xres)) ||
       ((y > 0) && (y < (int) canvas::get_instance()->get_var_info().yres))) {

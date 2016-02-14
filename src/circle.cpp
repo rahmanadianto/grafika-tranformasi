@@ -1,8 +1,17 @@
 #include "circle.hpp"
 
+circle::circle() {
+  this->center = point(100, 100);
+  this->radius = 100;
+}
+
 circle::circle(point center, int radius) {
   this->center = center;
   this->radius = radius;
+}
+
+point circle::get_center() {
+  return center;
 }
 
 void circle::set_center(point new_center) {

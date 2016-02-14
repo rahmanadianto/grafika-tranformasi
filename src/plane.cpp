@@ -49,7 +49,7 @@ void plane::crash() {
 void plane::draw(uint32_t color) {
 
   if (is_crash) {
-    crash_value += 10;
+    crash_value += 5;
   }
 
   this->c_center = circle(center, center_size);

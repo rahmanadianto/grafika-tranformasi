@@ -19,8 +19,8 @@ crosshair::crosshair() {
 }
 
 void crosshair::draw_stroke(uint32_t color) {
-	draw_vertical();
-	draw_horizontal();
+	draw_vertical(color);
+	draw_horizontal(color);
 }
 
 void crosshair::reset() {
@@ -59,7 +59,7 @@ void crosshair::moveY(int dy) {
 	this->y_pos += dy;
 }
 
-void crosshair::draw_vertical(uint32_t color = 0xffffffff) {
+void crosshair::draw_vertical(uint32_t color) {
 	for (int i = 0; i < 4; i++) {
 		lines[i].move(x_pos/2, y_pos/2);
 		lines[i].move(outline_scale - 1, 0);
@@ -74,7 +74,7 @@ void crosshair::draw_vertical(uint32_t color = 0xffffffff) {
 	}
 }
 
-void crosshair::draw_horizontal(uint32_t color = 0xffffffff) {
+void crosshair::draw_horizontal(uint32_t color) {
 	for (int i = 4; i < 8; i++) {
 		lines[i].move(x_pos/2, y_pos/2);
 		lines[i].move(0, outline_scale - 1);

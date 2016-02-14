@@ -13,7 +13,7 @@ public:
 	std::vector<point> get_points();
 	void reset();
 
-	void draw_stroke(int x = 0, int y = 0, uint32_t color = 0xffffffff);
+	void draw_stroke(uint32_t color = 0xffffffff);
 	void draw_horizontal();
 	void draw_vertical();
 
@@ -28,7 +28,7 @@ public:
 	void moveX(int dx);
 	void moveY(int dy);
 
-private:
+//private:
 	int x_pos;
 	int y_pos;
 	float outline_scale;

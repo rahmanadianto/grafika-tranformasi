@@ -25,7 +25,7 @@ int main() {
     n_center.set_x(center.get_x()-i);
     n_center.set_y(center.get_y()-i);
     n_size = 2+(i*0.05);
-    n_rotation = 0+(i);
+    n_rotation = 0+(i*1.0);
 
     p.draw(n_center,n_size,n_rotation);
     canvas::get_instance()->render();

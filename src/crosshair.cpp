@@ -33,9 +33,9 @@ void crosshair::scaleOutline(float outline_scale) {
 }
 
 void crosshair::scale(float scale) {
-	//this->scale_factor = scale;
+	//this->outline_scale = scale;
 	for (int i = 0; i < lines.size() - 1; i++) {
-		lines[i].scale(scale);
+		this->lines[i].scale(scale);
 	}
 }
 
@@ -64,7 +64,7 @@ void crosshair::draw_vertical() {
 		lines[i].move(x_pos/2, y_pos/2);
 		lines[i].move(outline_scale - 1, 0);
 		lines[i].draw();
-		if (scale_factor > 1) {
+		if (outline_scale > 1) {
 			for (int j = 0; j < (outline_scale - 1) * 2; j++) {
 				lines[i].move(-1, 0);
 				lines[i].draw();

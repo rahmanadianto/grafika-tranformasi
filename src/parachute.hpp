@@ -1,8 +1,10 @@
 #ifndef _PARACHUTE_H
 #define _PARACHUTE_H
 
-#include "gl.hpp"
 #include "polygon.hpp"
+#include "point.hpp"
+#include "circle.hpp"
+#include "line.hpp"
 #include <vector>
 #include <iostream>
 

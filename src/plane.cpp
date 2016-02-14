@@ -4,11 +4,17 @@ plane::plane() {
   this->center.set_x(100);
   this->center.set_y(100);
   this->center_size = 10;
+  this->rotate_factor = 0;
+  this->is_crash = false;
+  this->crash_value = 0;
 }
 
 plane::plane(point center, int center_size) {
   this->center = center;
   this->center_size = center_size;
+  this->rotate_factor = 0;
+  this->is_crash = false;
+  this->crash_value = 0;
 }
 
 point plane::get_center() {
@@ -27,11 +33,28 @@ void plane::set_size(int new_size) {
   center_size = new_size;
 }
 
+void plane::rotate_propeller(float rotate_factor) {
+  this->rotate_factor = rotate_factor;
+}
+
+void plane::move(int delta_x, int delta_y) {
+  center.set_x(center.get_x() + delta_x);
+  center.set_y(center.get_y() + delta_y);
+}
+
+void plane::crash() {
+  this->is_crash = true;
+}
+
 void plane::draw(uint32_t color) {
 
+  if (is_crash) {
+    crash_value += 10;
+  }
+
   this->c_center = circle(center, center_size);
-  this->c_left = circle(center.move(-(3 * center_size), 0), (int) (0.5 * center_size));
-  this->c_right = circle(center.move((3 * center_size), 0), (int) (0.5 * center_size));
+  this->c_left = circle(center.move(-(3 * center_size + crash_value), 0), (int) (0.5 * center_size));
+  this->c_right = circle(center.move((3 * center_size), 0 + crash_value), (int) (0.5 * center_size));
 
   // Lingkaran pusat
   c_center.draw_stroke(color);
@@ -46,16 +69,26 @@ void plane::draw(uint32_t color) {
   // Lingkaran kiri
   c_left.draw_stroke(color);
   c_left.draw_fill(color);
-  circle c_left_inner(c_left.get_center(), (int) (0.3 * center_size));
+  circle c_left_inner(c_left.get_center().move(crash_value, 0), (int) (0.3 * center_size));
   c_left_inner.draw_stroke(0x000000);
   c_left_inner.draw_fill(0x000000);
 
   // Lingkaran kanan
   c_right.draw_stroke(color);
   c_right.draw_fill(color);
-  circle c_right_inner(c_right.get_center(), (int) (0.3 * center_size));
+  circle c_right_inner(c_right.get_center().move(0, crash_value), (int) (0.3 * center_size));
   c_right_inner.draw_stroke(0x000000);
   c_right_inner.draw_fill(0x000000);
+  
+  // Propeller kiri
+  propeller p_left;
+  propeller p_right;
+  
+  
+  p_left.draw(c_left.get_center().move(0, crash_value), (int) (0.07 * center_size), rotate_factor);
+  p_right.draw(c_right.get_center().move(0, crash_value), (int) (0.07 * center_size), rotate_factor);
+
+  
 
   // body
   polygon body;
@@ -85,5 +118,5 @@ void plane::draw(uint32_t color) {
   body.add_point(point(57, 2));
   body.add_point(point(58, 1));
   body.scale(center_size * 0.08);
-  body.draw_stroke(center.get_x() - 60, center.get_y() - (int)(center_size * 2.2));
+  body.draw_stroke(center.get_x() - 60 + crash_value, center.get_y() - (int)(center_size * 2.2) - crash_value);
 }

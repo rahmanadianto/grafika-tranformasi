@@ -15,6 +15,7 @@ public:
 	void set_point(int index, point new_value);
 	std::vector<point> get_points();
 	void reset();
+	void resize(int n_points);
 
 	void draw_stroke(int x = 0, int y = 0, uint32_t color = 0xffffffff);
 	void draw_fill(int x, int y, uint32_t color = 0xffffffff);

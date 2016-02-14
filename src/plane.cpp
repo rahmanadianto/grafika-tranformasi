@@ -1,73 +1,14 @@
 #include "plane.hpp"
 
 plane::plane() {
-  point center(100, 100);
-
-  this->center = center;
+  this->center.set_x(100);
+  this->center.set_y(100);
   this->center_size = 10;
-
-  this->body.add_point(center.move(0, (int) (-2.2 * center_size)).get_x(),
-                       center.move(0, (int) (-2.2 * center_size)).get_y());
-  point top = body.get_points()[0];
-  body.add_point(top.get_x() + 2, top.get_y() + 1);
-  body.add_point(top.get_x() + 3, top.get_y() + 2);
-  body.add_point(top.get_x() + 3, top.get_y() + 8);
-  body.add_point(top.get_x() + 6, top.get_y() + 8);
-  body.add_point(top.get_x() + 7, top.get_y() + 9);
-  body.add_point(top.get_x() + 11, top.get_y() + 20);
-  body.add_point(top.get_x() + 58, top.get_y() + 20);
-  body.add_point(top.get_x() + 60, top.get_y() + 21);
-  body.add_point(top.get_x() + 60, top.get_y() + 22);
-  body.add_point(top.get_x() + 58, top.get_y() + 23);
-  body.add_point(top.get_x() + 9, top.get_y() + 23);
-  body.add_point(top.get_x() + 5, top.get_y() + 11);
-  body.add_point(top.get_x() - 5, top.get_y() + 11);
-  body.add_point(top.get_x() - 9, top.get_y() + 23);
-  body.add_point(top.get_x() - 58, top.get_y() + 23);
-  body.add_point(top.get_x() - 60, top.get_y() + 22);
-  body.add_point(top.get_x() - 60, top.get_y() + 21);
-  body.add_point(top.get_x() - 58, top.get_y() + 20);
-  body.add_point(top.get_x() - 11, top.get_y() + 20);
-  body.add_point(top.get_x() - 7, top.get_y() + 9);
-  body.add_point(top.get_x() - 6, top.get_y() + 8);
-  body.add_point(top.get_x() - 3, top.get_y() + 8);
-  body.add_point(top.get_x() - 3, top.get_y() + 2);
-  body.add_point(top.get_x() - 2, top.get_y() + 1);
-  body.scale(center_size / 12);
 }
 
 plane::plane(point center, int center_size) {
   this->center = center;
   this->center_size = center_size;
-
-  this->body.add_point(center.move(0, (int) (-2.2 * center_size)).get_x(),
-                       center.move(0, (int) (-2.2 * center_size)).get_y());
-  point top = body.get_points()[0];
-  body.add_point(top.get_x() + 2, top.get_y() + 1);
-  body.add_point(top.get_x() + 3, top.get_y() + 2);
-  body.add_point(top.get_x() + 3, top.get_y() + 8);
-  body.add_point(top.get_x() + 6, top.get_y() + 8);
-  body.add_point(top.get_x() + 7, top.get_y() + 9);
-  body.add_point(top.get_x() + 11, top.get_y() + 20);
-  body.add_point(top.get_x() + 58, top.get_y() + 20);
-  body.add_point(top.get_x() + 60, top.get_y() + 21);
-  body.add_point(top.get_x() + 60, top.get_y() + 22);
-  body.add_point(top.get_x() + 58, top.get_y() + 23);
-  body.add_point(top.get_x() + 9, top.get_y() + 23);
-  body.add_point(top.get_x() + 5, top.get_y() + 11);
-  body.add_point(top.get_x() - 5, top.get_y() + 11);
-  body.add_point(top.get_x() - 9, top.get_y() + 23);
-  body.add_point(top.get_x() - 58, top.get_y() + 23);
-  body.add_point(top.get_x() - 60, top.get_y() + 22);
-  body.add_point(top.get_x() - 60, top.get_y() + 21);
-  body.add_point(top.get_x() - 58, top.get_y() + 20);
-  body.add_point(top.get_x() - 11, top.get_y() + 20);
-  body.add_point(top.get_x() - 7, top.get_y() + 9);
-  body.add_point(top.get_x() - 6, top.get_y() + 8);
-  body.add_point(top.get_x() - 3, top.get_y() + 8);
-  body.add_point(top.get_x() - 3, top.get_y() + 2);
-  body.add_point(top.get_x() - 2, top.get_y() + 1);
-  body.scale(center_size / 12);
 }
 
 point plane::get_center() {
@@ -116,7 +57,33 @@ void plane::draw(uint32_t color) {
   c_right_inner.draw_stroke(0x000000);
   c_right_inner.draw_fill(0x000000);
 
-  // body
-  body.scale(center_size / 12);
-  body.draw_stroke(0, -100, color);
+  /* body
+  int x_c = center.get_x();
+  int y_c = center.get_y();
+  body.set_point(0, point(x_c, y_c + (int) (-2.2 * center_size)));
+  body.set_point(1, point(x_c + 2, y_c + 1));
+  body.set_point(2, point(x_c + 3, y_c + 2));
+  body.set_point(3, point(x_c + 3, y_c + 8));
+  body.set_point(4, point(x_c + 6, y_c + 8));
+  body.set_point(5, point(x_c + 7, y_c + 9));
+  body.set_point(6, point(x_c + 11, y_c + 20));
+  body.set_point(7, point(x_c + 58, y_c + 20));
+  body.set_point(8, point(x_c + 60, y_c + 21));
+  body.set_point(9, point(x_c + 60, y_c + 22));
+  body.set_point(10, point(x_c + 58, y_c + 23));
+  body.set_point(11, point(x_c + 9, y_c + 23));
+  body.set_point(12, point(x_c + 5, y_c + 11));
+  body.set_point(13, point(x_c - 5, y_c + 11));
+  body.set_point(14, point(x_c - 9, y_c + 23));
+  body.set_point(15, point(x_c - 58, y_c + 23));
+  body.set_point(16, point(x_c - 60, y_c + 22));
+  body.set_point(17, point(x_c - 60, y_c + 21));
+  body.set_point(18, point(x_c - 58, y_c + 20));
+  body.set_point(19, point(x_c - 11, y_c + 20));
+  body.set_point(20, point(x_c - 7, y_c + 9));
+  body.set_point(21, point(x_c - 6, y_c + 8));
+  body.set_point(22, point(x_c - 3, y_c + 8));
+  body.set_point(23, point(x_c - 3, y_c + 2));
+  body.set_point(24, point(x_c - 2, y_c + 1));
+  body.draw_stroke(0, 0, color); */
 }

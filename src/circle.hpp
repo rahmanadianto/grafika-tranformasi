@@ -8,7 +8,9 @@
 class circle {
 
 public:
+  circle();
   circle(point center, int radius);
+  point get_center();
   void set_center(point new_center);
   void set_radius(int new_radius);
   void draw_stroke(uint32_t color);

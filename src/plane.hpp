@@ -22,7 +22,7 @@ private:
   circle c_center;
   circle c_left;
   circle c_right;
-  polygon body;
+  //polygon body;
 };
 
 #endif

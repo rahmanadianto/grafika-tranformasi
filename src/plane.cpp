@@ -57,33 +57,33 @@ void plane::draw(uint32_t color) {
   c_right_inner.draw_stroke(0x000000);
   c_right_inner.draw_fill(0x000000);
 
-  /* body
-  int x_c = center.get_x();
-  int y_c = center.get_y();
-  body.set_point(0, point(x_c, y_c + (int) (-2.2 * center_size)));
-  body.set_point(1, point(x_c + 2, y_c + 1));
-  body.set_point(2, point(x_c + 3, y_c + 2));
-  body.set_point(3, point(x_c + 3, y_c + 8));
-  body.set_point(4, point(x_c + 6, y_c + 8));
-  body.set_point(5, point(x_c + 7, y_c + 9));
-  body.set_point(6, point(x_c + 11, y_c + 20));
-  body.set_point(7, point(x_c + 58, y_c + 20));
-  body.set_point(8, point(x_c + 60, y_c + 21));
-  body.set_point(9, point(x_c + 60, y_c + 22));
-  body.set_point(10, point(x_c + 58, y_c + 23));
-  body.set_point(11, point(x_c + 9, y_c + 23));
-  body.set_point(12, point(x_c + 5, y_c + 11));
-  body.set_point(13, point(x_c - 5, y_c + 11));
-  body.set_point(14, point(x_c - 9, y_c + 23));
-  body.set_point(15, point(x_c - 58, y_c + 23));
-  body.set_point(16, point(x_c - 60, y_c + 22));
-  body.set_point(17, point(x_c - 60, y_c + 21));
-  body.set_point(18, point(x_c - 58, y_c + 20));
-  body.set_point(19, point(x_c - 11, y_c + 20));
-  body.set_point(20, point(x_c - 7, y_c + 9));
-  body.set_point(21, point(x_c - 6, y_c + 8));
-  body.set_point(22, point(x_c - 3, y_c + 8));
-  body.set_point(23, point(x_c - 3, y_c + 2));
-  body.set_point(24, point(x_c - 2, y_c + 1));
-  body.draw_stroke(0, 0, color); */
+  // body
+  polygon body;
+  body.add_point(point(60, 0));
+  body.add_point(point(62, 1));
+  body.add_point(point(63, 2));
+  body.add_point(point(63, 8));
+  body.add_point(point(66, 8));
+  body.add_point(point(67, 9));
+  body.add_point(point(71, 20));
+  body.add_point(point(118, 20));
+  body.add_point(point(120, 21));
+  body.add_point(point(120, 22));
+  body.add_point(point(118, 23));
+  body.add_point(point(69, 23));
+  body.add_point(point(65, 11));
+  body.add_point(point(55, 11));
+  body.add_point(point(51, 23));
+  body.add_point(point(2, 23));
+  body.add_point(point(0, 22));
+  body.add_point(point(0, 21));
+  body.add_point(point(2, 20));
+  body.add_point(point(49, 20));
+  body.add_point(point(53, 9));
+  body.add_point(point(54, 8));
+  body.add_point(point(57, 8));
+  body.add_point(point(57, 2));
+  body.add_point(point(58, 1));
+  body.scale(center_size * 0.08);
+  body.draw_stroke(center.get_x() - 60, center.get_y() - (int)(center_size * 2.2));
 }
